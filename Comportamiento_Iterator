@@ -1,0 +1,38 @@
+class ColeccionNombres:
+    def __init__(self):
+        self._nombres = []
+
+    def agregar_nombre(self, nombre):
+        self._nombres.append(nombre)
+
+    def __iter__(self):
+        return IteradorNombres(self._nombres)
+
+
+# Clase iterador
+class IteradorNombres:
+    def __init__(self, nombres):
+        self._nombres = nombres
+        self._indice = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._indice < len(self._nombres):
+            resultado = self._nombres[self._indice]
+            self._indice += 1
+            return resultado
+        else:
+            raise StopIteration
+
+
+# Uso del patrón Iterator
+coleccion = ColeccionNombres()
+coleccion.agregar_nombre("Alice")
+coleccion.agregar_nombre("Bob")
+coleccion.agregar_nombre("Charlie")
+
+# Recorriendo la colección usando el iterador
+for nombre in coleccion:
+    print(nombre)
