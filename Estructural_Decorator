@@ -1,0 +1,41 @@
+# Clase base
+class Cafe:
+    def costo(self):
+        return 5  # Costo inicial del café
+    def descripcion(self):
+        return "Café simple"
+
+# Decorador base
+class CafeDecorador:
+    def __init__(self, cafe):
+        self._cafe = cafe  # Guarda la instancia del café para decorarlo
+    def costo(self):
+        return self._cafe.costo()
+    def descripcion(self):
+        return self._cafe.descripcion()
+
+# Decorador concreto - Añade leche
+class LecheDecorador(CafeDecorador):
+    def costo(self):
+        return self._cafe.costo() + 2  # Aumenta el costo por añadir leche
+    def descripcion(self):
+        return self._cafe.descripcion() + ", con leche"
+
+# Decorador concreto - Añade azúcar
+class AzucarDecorador(CafeDecorador):
+    def costo(self):
+        return self._cafe.costo() + 1  # Aumenta el costo por añadir azúcar
+    def descripcion(self):
+        return self._cafe.descripcion() + ", con azúcar"
+
+# Uso del decorador
+cafe_simple = Cafe()
+print(f"{cafe_simple.descripcion()} cuesta Q.{cafe_simple.costo()}")
+
+# Café con leche
+cafe_con_leche = LecheDecorador(cafe_simple)
+print(f"{cafe_con_leche.descripcion()} cuesta Q.{cafe_con_leche.costo()}")
+
+# Café con leche y azúcar
+cafe_con_leche_y_azucar = AzucarDecorador(cafe_con_leche)
+print(f"{cafe_con_leche_y_azucar.descripcion()} cuesta Q.{cafe_con_leche_y_azucar.costo()}")
