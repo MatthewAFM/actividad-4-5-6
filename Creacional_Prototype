@@ -1,0 +1,31 @@
+import copy
+class Documento:
+    def __init__(self, titulo, contenido):
+        self.titulo = titulo
+        self.contenido = contenido
+
+    def clonar(self):
+        # Retorna una copia superficial del objeto
+        return copy.copy(self)
+
+    def mostrar_informacion(self):
+        print(f"Título: {self.titulo}")
+        print(f"Contenido: {self.contenido}")
+
+
+# Uso del patrón Prototype
+documento_original = Documento("Reporte Mensual", "Este es el contenido del reporte mensual.")
+print("Documento original:")
+documento_original.mostrar_informacion()
+
+# Clonando el documento
+documento_clonado = documento_original.clonar()
+documento_clonado.titulo = "Reporte Mensual (Copia)"
+documento_clonado.contenido = "Este es el contenido del reporte clonado."
+
+print("\nDocumento clonado:")
+documento_clonado.mostrar_informacion()
+
+# Mostrando el documento original para ver que no fue modificado
+print("\nDocumento original después de la clonación:")
+documento_original.mostrar_informacion()
